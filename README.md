@@ -13,10 +13,15 @@ For example, in the html where the bevy app is rendered, specify the id of the c
 
 Then you need to configure the Window plugin to render to that ID as well:
 ```rust
-let mut window_plugin = WindowPlugin::default();
-window_plugin.primary_window = Some(String::from("#main-canvas"));
 App::new()
-    .with_plugins(DefaultPlugins.set(window_plugin))
+    .with_plugins(DefaultPlugins.set(WindowPlugin {
+        primary_Window: Some(Window {
+            canvas: Some(String::from("#main-canvas")),
+            ..default()
+        }),
+        ..default()
+    }))
+    // ...
 ```
 
 and if you utilize a different ID than the default `main-canvas`, you will need to change the
