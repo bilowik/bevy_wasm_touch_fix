@@ -89,25 +89,42 @@ pub fn handle_touch_input(
     let (camera, camera_transform) = camera.single();
     for e in touch_input_events.read() {
         info!("Screen-relative Pos {:?}", e.position);
+        // Transform the position using the camera's viewport into the world
+        // since it is currently relative to the screen.
+        // If somehow it fails default ot the original position.
+        let position = camera
+            .viewport_to_world(camera_transform, e.position)
+            .map(|ray| ray.origin.truncate())
+            .unwrap_or(e.position);
+        info!("In-World Pos {:?}", position);
 
         match e.phase {
             TouchPhase::Started => {
-                // Transform the position using the camera's viewport into the world
-                // since it is currently relative to the screen.
-                // If somehow it fails default ot the original position.
-                let position = camera
-                    .viewport_to_world(camera_transform, e.position)
-                    .map(|ray| ray.origin.truncate())
-                    .unwrap_or(e.position);
-                info!("In-World Pos {:?}", position);
                 commands.spawn(ColorMesh2dBundle {
                     mesh: meshes.add(shape::Circle::new(4.0).into()).into(),
-                    transform: Transform::from_translation(position.extend(0.0)),
+                    transform: Transform::from_translation(position.extend(0.1)),
+                    material: color_materials.add(ColorMaterial::from(Color::RED)),
+                    ..default()
+                });
+            }
+            TouchPhase::Ended => {
+                commands.spawn(ColorMesh2dBundle {
+                    mesh: meshes.add(shape::Circle::new(4.0).into()).into(),
+                    transform: Transform::from_translation(position.extend(0.5)),
                     material: color_materials.add(ColorMaterial::from(Color::GREEN)),
                     ..default()
                 });
             }
-            _ => {}
+            TouchPhase::Moved => {
+                commands.spawn(ColorMesh2dBundle {
+                    mesh: meshes.add(shape::Circle::new(4.0).into()).into(),
+                    transform: Transform::from_translation(position.extend(0.0)),
+                    material: color_materials.add(ColorMaterial::from(Color::WHITE)),
+                    ..default()
+                });
+            }
+
+            TouchPhase::Canceled => {}
         }
     }
 }
