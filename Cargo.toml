@@ -2,6 +2,11 @@
 name = "bevy_wasm_touch_fix"
 version = "0.1.0"
 edition = "2021"
+description = "For Bevy >=0.12, a plugin that fixes the issues of incorrect touch positions in wasm"
+tags = ["gamedev", "bevy", "bevy_plugin"]
+categories = ["game-development"]
+license = "Unlicense"
+repository = "https://github.com/bilowik/bevy_wasm_touch_fix"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
