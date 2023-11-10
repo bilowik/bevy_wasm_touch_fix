@@ -28,7 +28,7 @@ and if you utilize a different ID than the default `main-canvas`, you will need 
 PrimaryCanvasId resource.
 ```rust
         //...
-        .insert_resource(PrimaryCanvasId(String::from("my-custom-id")));
+        .insert_resource(PrimaryCanvasId(String::from("#my-custom-id")));
         //...
 ```
 
