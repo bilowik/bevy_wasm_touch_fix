@@ -36,3 +36,7 @@ needed to calculate an accurate offset for complex web pages.
 In the case that additional adjustments are needed on your end, you should utilize the 
 [AdditionalTouchOffset] resource and add any additional offset there that is needed and it 
 will be included in the offsetting of the touch events.
+
+I also do not know the exact implications (if any) of pulling off the events and pushing them back on. 
+I guaranteed that both a and b queues remain the same (+ the offset of course) before and after the offsetting,
+but the event count will increment twice as fast. 
