@@ -1,6 +1,6 @@
 [package]
 name = "bevy_wasm_touch_fix"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "For Bevy >=0.12, a plugin that fixes the issues of incorrect touch positions in wasm"
 tags = ["gamedev", "bevy", "bevy_plugin"]
