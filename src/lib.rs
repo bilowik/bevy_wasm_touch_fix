@@ -1,4 +1,4 @@
-#[doc = include_str!("../README.md")]
+#![doc = include_str!("../README.md")]
 use bevy_app::prelude::*;
 use bevy_ecs::prelude::*;
 use bevy_input::{touch::touch_screen_input_system, touch::TouchInput};
