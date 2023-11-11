@@ -112,7 +112,7 @@ pub fn offset_touch_input_events(
         let old_events = touch_input_events
             .update_drain()
             .map(|mut e| {
-                e.position -= touch_offset.0 + additional_touch_offset.0;
+                e.position = e.position - touch_offset.0 + additional_touch_offset.0;
                 e
             })
             .collect::<Vec<_>>();
