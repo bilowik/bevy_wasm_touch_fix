@@ -1,6 +1,8 @@
-A plugin to fix the issue with touch inputs in web-embedded Bevy applications where touch 
+A plugin to fix the issue with touch inputs in web-embedded Bevy 0.12 applications where touch 
 input positions are relative to the web page's viewport and not the canvas. Fixes both UI elements and when 
-reading TouchInput events or the Touches resource. 
+reading TouchInput events or the Touches resource.
+
+(This **may** also work with Bevy 0.11, but I have not tested that yet)
 
 Add the plugin and ensure the canvas id in the html where the bevy app is rendered matches 
 the one set in the WindowPlugin and in the PrimaryCanvasId resource. The default for this 
